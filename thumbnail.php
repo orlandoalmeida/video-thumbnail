@@ -99,8 +99,10 @@ function getVimeoThumbnail($link, $size = 2){
 // salva a img em uma pasta
 function saveImg($thumbnail = null, $path = null, $nome = null){
 	if(!$path){
-		$base_path = $_SERVER['DOCUMENT_ROOT'];
-		@system("chmod -R 755 $base_path");
+		$base_path = $_SERVER['SCRIPT_FILENAME'];
+		$semi_path = explode('/', $base_path);
+		unset($semi_path[sizeof($semi_path)-1]);
+		$base_path = implode('/', $semi_path);
 		$base_path .= '/thumb_img';
 		if(!is_dir("$base_path")){
 			@mkdir("$base_path", 0775);
